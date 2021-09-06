@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Roll The Die</title>
+    <title>🎲 Roll The Dice</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -15,12 +15,60 @@
         <h1>Start new game</h1>
         <h2>Are you sure?</h2>
         <div>
-          <button id="yes" class="btn-popup">Yes</button>
+          <button id="yes" class="btn-popup" onclick="playAgain()">Yes</button>
           <button id="no" class="btn-popup" onclick="popupClose()">No</button>
         </div>
       </div>
       <div id="inst" class="hidden">
         <h1>How to play?</h1>
+        <ul>
+          <li>
+            The current active player is the one with solid white background.
+          </li>
+          <br />
+          <li>Start by pressing "Roll the dice" button.</li>
+          <br />
+          <li>
+            You have to 'pass' before you roll a 1 in order to make progress in
+            the game.
+          </li>
+          <br />
+          <li>
+            The dice will give a random number that will be added to active
+            player's current score.
+          </li>
+          <br />
+          <li>
+            The active player may roll multiple dice or may pass the turn.
+          </li>
+          <br />
+          <li>
+            If a player rolls 1 then all the 'current points' will be deducted
+            and the turn will be passed to other player.
+          </li>
+          <br />
+          <li>
+            If the player chooses to 'pass' then the 'current points' will be
+            added to the player's total points and the chance will be passed on
+            to the other player.
+          </li>
+          <br />
+          <li>First player to reach the range limit will win.</li>
+          <br />
+          <li>You may set the custom limit from the controls below.</li>
+        </ul>
+        <div id="range-set">
+          <input
+            type="number"
+            min="1"
+            max="500"
+            placeholder="Input range"
+            id="range-field"
+          />
+          <button id="range-button" class="btn-popup" onclick="changeRange()">
+            Set range
+          </button>
+        </div>
         <button id="close" onclick="popupClose()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,9 +112,16 @@
           </svg>
         </button>
       </div>
+      <div id="popup-rename" class="hidden">
+        <h1>Enter your name</h1>
+        <input type="text" id="name-field" />
+        <button id="re-assign-btn" class="btn-popup" onclick="changeName()">
+          Rename
+        </button>
+      </div>
       <!-- Left Section -->
       <section id="panel">
-        <h1>Roll The Dice.</h1>
+        <h1 id="main-heading">Roll The Dice.</h1>
         <img id="the-dice" src="./img/1.png" alt="a die" />
         <div id="controls">
           <button id="new-game" class="btn" onclick="warnPopupOpen()">
@@ -239,6 +294,7 @@
             viewBox="0 0 256 256"
             id="rename1"
             class="btn-rename"
+            onclick="renamePopupOpen(); currentInput(1)"
           >
             <rect width="256" height="256" fill="none"></rect>
             <path
@@ -291,6 +347,7 @@
             viewBox="0 0 256 256"
             id="rename2"
             class="btn-rename"
+            onclick="renamePopupOpen(); currentInput(2)"
           >
             <rect width="256" height="256" fill="none"></rect>
             <path
