@@ -210,6 +210,8 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  min-height: 673px;
+  min-width: 800px;
 }
 /* Left Section */
 #panel {
@@ -250,3 +252,5 @@ body {
 #card-2 {
   margin-left: 1.5rem;
 }
+
+/* Mobile site */
